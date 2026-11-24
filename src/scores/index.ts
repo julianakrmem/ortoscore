@@ -4,7 +4,7 @@ import { gustilo, mess } from './trauma';
 import type { Category, Score, ScoreResult } from './types';
 
 export * from './types';
-export { isVisible, missingFields } from './helpers';
+export { isPending, isVisible, missingFields } from './helpers';
 
 export const SCORES: Score[] = [
   ottawaAnkle,
@@ -27,7 +27,6 @@ export const getScore = (id: string) => SCORES.find((s) => s.id === id);
 export function chartNote(score: Score, r: ScoreResult): string {
   const lines = [`${score.name}: ${r.headline}.`, r.interpretation];
   if (r.breakdown.length) lines.push(r.breakdown.map((b) => `• ${b}`).join('\n'));
-  const author = score.references[0]?.match(/^(.*?)(?: et al)?\./)?.[1];
-  if (author) lines.push(`Ref.: ${author} et al.`);
+  lines.push(`Ref.: ${score.cite}.`);
   return lines.join('\n');
 }

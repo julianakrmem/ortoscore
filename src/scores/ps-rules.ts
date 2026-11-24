@@ -46,6 +46,12 @@ export const ottawaAnkle: Score = {
     'Stiell IG et al. Implementation of the Ottawa ankle rules. JAMA. 1994;271(11):827-32.',
     'Bachmann LM et al. Accuracy of Ottawa ankle rules to exclude fractures: systematic review. BMJ. 2003;326:417.',
   ],
+  cite: 'Stiell et al., 1994',
+  example: {
+    caption: 'Entorse em inversão no futebol. Dor à palpação da ponta do maléolo lateral; consegue andar mancando.',
+    answers: { malleolarPain: true, lateralMalleolus: true },
+    expected: 'Radiografia de tornozelo',
+  },
   fields: ankleFields,
   evaluate(a) {
     const ankleXray =
@@ -111,6 +117,12 @@ export const ottawaKnee: Score = {
     'Stiell IG et al. Implementation of the Ottawa Knee Rule for the use of radiography in acute knee injuries. JAMA. 1997;278(23):2075-9.',
     'Bachmann LM et al. The accuracy of the Ottawa knee rule: systematic review. Ann Intern Med. 2004;140(2):121-4.',
   ],
+  cite: 'Stiell et al., 1997',
+  example: {
+    caption: 'Queda de bicicleta, 34 anos. Dor difusa no joelho, sem dor óssea localizada; flete a 120° e anda.',
+    answers: { __none: true },
+    expected: 'Regra negativa',
+  },
   fields: kneeFields,
   evaluate(a) {
     const findings = checkedLabels(kneeFields, a);
@@ -193,6 +205,12 @@ export const canadianCSpine: Score = {
     'Stiell IG et al. The Canadian C-spine rule for radiography in alert and stable trauma patients. JAMA. 2001;286(15):1841-8.',
     'Stiell IG et al. The Canadian C-spine rule versus the NEXUS low-risk criteria. N Engl J Med. 2003;349:2510-8.',
   ],
+  cite: 'Stiell et al., 2001',
+  example: {
+    caption: 'Colisão traseira simples a 40 km/h, 42 anos. Deambulou na cena, sem dor na linha média, roda o pescoço 45° para os dois lados.',
+    answers: { simpleRearEnd: true, ambulatory: true, noMidlineTenderness: true, rotation: 'yes' },
+    expected: 'Imagem dispensável',
+  },
   fields: ccsrFields,
   evaluate(a) {
     if (yes(a, 'excluded')) {
@@ -267,6 +285,12 @@ export const nexus: Score = {
   references: [
     'Hoffman JR et al. Validity of a set of clinical criteria to rule out injury to the cervical spine in patients with blunt trauma. N Engl J Med. 2000;343:94-9.',
   ],
+  cite: 'Hoffman et al., 2000',
+  example: {
+    caption: 'Queda da própria altura, 58 anos, alerta e sem déficit. Dor à palpação da linha média em C5.',
+    answers: { midline: true },
+    expected: 'Imagem indicada',
+  },
   fields: nexusFields,
   evaluate(a) {
     const present = checkedLabels(nexusFields, a);

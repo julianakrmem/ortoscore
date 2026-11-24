@@ -69,6 +69,12 @@ export const mess: Score = {
     'Johansen K et al. Objective criteria accurately predict amputation following lower extremity trauma. J Trauma. 1990;30(5):568-72.',
     'Bosse MJ et al. A prospective evaluation of the clinical utility of the lower-extremity injury-severity scores (LEAP). J Bone Joint Surg Am. 2001;83(1):3-14.',
   ],
+  cite: 'Johansen et al., 1990',
+  example: {
+    caption: 'Motociclista, 45 anos, fratura exposta de tíbia por esmagamento. Pé frio e insensível há 7 h; PA sistólica de 80 mmHg que respondeu a volume.',
+    answers: { skeletal: 'high', ischemia: 'cold', ischemiaOver6h: true, shock: 'transient', age: '30to50' },
+    expected: 'MESS 11',
+  },
   fields: [
     messSkeletal,
     messIschemia,
@@ -212,6 +218,12 @@ export const gustilo: Score = {
     'Gustilo RB, Mendoza RM, Williams DN. Problems in the management of type III open fractures. J Trauma. 1984;24(8):742-6.',
     'Hoff WS et al. EAST practice management guidelines: prophylactic antibiotic use in open fractures. J Trauma. 2011;70(3):751-4.',
   ],
+  cite: 'Gustilo e Anderson, 1976',
+  example: {
+    caption: 'Fratura exposta de tíbia com ferida de 4 cm, pouca contaminação e lesão moderada de partes moles. Pulsos presentes.',
+    answers: { arterial: 'no', wound: '1to10', contamination: 'clean', softTissue: 'moderate' },
+    expected: 'Tipo II',
+  },
   fields: gaFields,
   evaluate(a) {
     const common = ['Profilaxia antitetânica conforme o estado vacinal.', 'Antibiótico o mais cedo possível, idealmente na primeira hora.'];

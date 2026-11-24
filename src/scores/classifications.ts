@@ -15,6 +15,12 @@ export const salterHarris: Score = {
   references: [
     'Salter RB, Harris WR. Injuries involving the epiphyseal plate. J Bone Joint Surg Am. 1963;45(3):587-622.',
   ],
+  cite: 'Salter e Harris, 1963',
+  example: {
+    caption: 'Menino de 11 anos, queda sobre a mão. Traço que percorre a fise do rádio distal e sai pela metáfise.',
+    answers: { crush: 'no', metaphysis: 'yes', epiphysis: 'no' },
+    expected: 'Tipo II',
+  },
   fields: [
     {
       id: 'crush',
@@ -88,6 +94,12 @@ export const garden: Score = {
   references: [
     'Garden RS. Low-angle fixation in fractures of the femoral neck. J Bone Joint Surg Br. 1961;43(4):647-63.',
   ],
+  cite: 'Garden, 1961',
+  example: {
+    caption: 'Mulher de 82 anos, queda da própria altura. Fratura completa do colo do fêmur com a cabeça totalmente desviada.',
+    answers: { complete: 'yes', displacement: 'full' },
+    expected: 'Garden IV',
+  },
   fields: [
     {
       id: 'complete',
@@ -153,6 +165,12 @@ export const kocher: Score = {
     'Kocher MS et al. Differentiating between septic arthritis and transient synovitis of the hip in children. J Bone Joint Surg Am. 1999;81(12):1662-70.',
     'Kocher MS et al. Validation of a clinical prediction rule for the differentiation between septic arthritis and transient synovitis of the hip in children. J Bone Joint Surg Am. 2004;86(8):1629-35.',
   ],
+  cite: 'Kocher et al., 1999',
+  example: {
+    caption: 'Criança de 6 anos com quadril doloroso há 2 dias. Recusa apoiar, 39 °C, VHS 55 mm/h, leucócitos 10.500/mm³.',
+    answers: { nwb: true, fever: true, esr: true },
+    expected: '3 de 4 critérios',
+  },
   fields: [
     { id: 'nwb', kind: 'boolean', label: 'Não apoia o membro (recusa a carga)' },
     { id: 'fever', kind: 'boolean', label: 'Temperatura > 38,5 °C' },
@@ -240,6 +258,12 @@ export const mirels: Score = {
   references: [
     'Mirels H. Metastatic disease in long bones: a proposed scoring system for diagnosing impending pathologic fractures. Clin Orthop Relat Res. 1989;(249):256-64.',
   ],
+  cite: 'Mirels, 1989',
+  example: {
+    caption: 'Metástase lítica de câncer de mama na região peritrocantérica, ocupando metade da cortical, com dor ao apoiar.',
+    answers: { site: 'peritrochanteric', pain: 'functional', lesion: 'lytic', size: '13to23' },
+    expected: 'Mirels 11',
+  },
   fields: [mSite, mPain, mLesion, mSize],
   evaluate(a) {
     const parts = [mSite, mPain, mLesion, mSize].map((f) => ({ f, p: pointsOf(f, a) }));

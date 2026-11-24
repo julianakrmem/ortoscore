@@ -6,6 +6,9 @@
 
 export type Answers = Record<string, string | boolean | undefined>;
 
+/** Chave usada quando o usuário confirma que nenhum item do checklist está presente. */
+export const NONE_KEY = '__none';
+
 interface BaseField {
   id: string;
   label: string;
@@ -68,6 +71,10 @@ export interface Score {
   applicability: string[];
   limitations: string[];
   references: string[];
+  /** Citação curta para a nota do prontuário (ex.: "Johansen et al., 1990"). */
+  cite: string;
+  /** Caso clínico de exemplo, para estudo. `expected` é o resultado esperado (conferido nos testes). */
+  example: { caption: string; answers: Answers; expected: string };
   /** Régua de pontuação exibida na interface (escores somatórios). */
   scale?: { min: number; max: number; marks: { at: number; label: string }[] };
   fields: Field[];

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { chartNote, getScore, missingFields, SCORES } from './index';
+import { chartNote, getScore, isPending, missingFields, SCORES } from './index';
 import type { Answers } from './types';
 
 const run = (id: string, a: Answers) => getScore(id)!.evaluate(a);
@@ -169,6 +169,33 @@ describe('integridade', () => {
     const s = getScore('mess')!;
     const note = chartNote(s, s.evaluate({ skeletal: 'low', ischemia: 'none', shock: 'none', age: 'lt30' }));
     expect(note).toContain('MESS 1');
-    expect(note).toContain('Ref.: Johansen K et al.');
+    expect(note).toContain('Ref.: Johansen et al., 1990.');
+  });
+});
+
+describe('checklist pendente', () => {
+  it('checklist sem marcação fica pendente', () => {
+    expect(isPending(getScore('ottawa-joelho')!, {})).toBe(true);
+    expect(isPending(getScore('kocher')!, {})).toBe(true);
+    expect(isPending(getScore('canadian-c-spine')!, {})).toBe(true);
+  });
+  it('uma marcação ou a confirmação "nenhum" libera o resultado', () => {
+    expect(isPending(getScore('ottawa-joelho')!, { fibula: true })).toBe(false);
+    expect(isPending(getScore('ottawa-joelho')!, { __none: true })).toBe(false);
+  });
+  it('desmarcar tudo volta a ficar pendente', () => {
+    expect(isPending(getScore('nexus')!, { midline: false })).toBe(true);
+  });
+  it('escores só de múltipla escolha nunca ficam pendentes', () => {
+    expect(isPending(getScore('garden')!, {})).toBe(false);
+  });
+});
+
+describe('casos clínicos de exemplo', () => {
+  it.each(SCORES.map((s) => [s.id, s] as const))('%s: exemplo gera o resultado esperado', (_id, s) => {
+    const a = s.example.answers;
+    expect(missingFields(s, a)).toEqual([]);
+    expect(isPending(s, a)).toBe(false);
+    expect(s.evaluate(a).headline).toBe(s.example.expected);
   });
 });

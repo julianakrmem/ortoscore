@@ -24,6 +24,8 @@ Escores ortopédicos e de trauma com perguntas guiadas. Você responde como fari
 
 ## Funcionalidades
 
+- **Nada de resultado antes do exame.** Nas regras em formato de checklist, o resultado só aparece depois que você marca os achados ou confirma que nenhum está presente; um formulário em branco nunca vira "regra negativa".
+- **Caso clínico de exemplo** em cada escore, para estudar como a regra se aplica.
 - **Perguntas guiadas.** Classificações viram árvores de decisão: no Gustilo-Anderson, a pergunta sobre retalho só aparece quando a fratura já é tipo III; uma lesão arterial leva direto ao IIIC.
 - **Cálculo explicado.** Cada resultado mostra de onde veio (ex.: "MESS 9: esqueleto 3 + isquemia 4, dobrada por > 6 h + choque 1 + idade 1").
 - **Régua de pontuação** com os limiares do estudo original (MESS, Mirels, Kocher).
@@ -32,7 +34,9 @@ Escores ortopédicos e de trauma com perguntas guiadas. Você responde como fari
 - **Copiar para a evolução:** gera o texto para colar no prontuário.
 - **Temas claro, escuro e alto contraste.**
 - **PWA:** pode ser instalado no celular e funciona offline.
-- Endereço próprio para cada escore (ex.: `#mess`), para compartilhar.
+- Endereço próprio para cada escore (ex.: `#mess`), para compartilhar; o botão voltar do navegador funciona.
+- **Acessível:** navegação completa pelo teclado com foco visível, rótulos para leitores de tela e respeito à preferência por menos animação.
+- **Privacidade:** as respostas ficam só na memória da aba; nada é salvo nem enviado.
 
 ## Arquitetura
 
@@ -45,7 +49,9 @@ src/scores/
 ├── classifications.ts  ← Salter-Harris, Garden, Kocher, Mirels
 ├── index.ts            ← registro dos escores e nota para o prontuário
 └── scores.test.ts      ← testes (Vitest)
-src/App.tsx             ← interface gerada a partir das definições
+src/components/         ← Header, ScoreIndex, ScoreScreen, Fields, Result, Icons
+src/lib/                ← rotas por #hash, layout responsivo, área de transferência
+src/App.tsx             ← composição das telas
 src/theme.ts            ← temas
 ```
 
@@ -57,13 +63,15 @@ src/theme.ts            ← temas
 npm test
 ```
 
-63 testes conferem cada escore contra os critérios publicados, por exemplo:
+77 testes conferem cada escore contra os critérios publicados, por exemplo:
 
 - todos os tipos de Salter-Harris, Garden e Gustilo-Anderson (incluindo casos limítrofes, como ferida pequena com alta energia → III);
 - a regra de duplicar a isquemia no MESS só quando há isquemia, e o máximo teórico de 14 pontos;
 - as probabilidades do estudo original de Kocher para 0 a 4 critérios;
 - os limiares 7/8/9 do Mirels;
-- as perguntas que aparecem ou somem em cada caminho das árvores de decisão.
+- as perguntas que aparecem ou somem em cada caminho das árvores de decisão;
+- que nenhum checklist mostra resultado antes de ser preenchido;
+- que cada caso clínico de exemplo gera o resultado descrito.
 
 ## Como rodar
 
