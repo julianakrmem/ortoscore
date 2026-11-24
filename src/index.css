@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+/* Claro: gesso frio, grafite e azul de campo cirúrgico. */
+@theme {
+  --color-paper: #eef1f0;
+  --color-surface: #fbfcfc;
+  --color-ink: #1c2228;
+  --color-muted: #5f6b75;
+  --color-line: #d3d9dc;
+  --color-titanium: #7d8892;
+  --color-accent: #1f5c78;
+  --color-accent-soft: #e2edf2;
+  --color-on-accent: #ffffff;
+  --color-ok: #23704f;
+  --color-ok-bg: #e6f2ec;
+  --color-warn: #8a5a00;
+  --color-warn-bg: #fbf1dc;
+  --color-bad: #a3241c;
+  --color-bad-bg: #fbe9e7;
+  --color-na: #4b5560;
+  --color-na-bg: #e7ebee;
+  --font-sans: "Barlow", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Barlow Condensed", "Arial Narrow", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root { color-scheme: light; }
+
+/* Escuro: negatoscópio — filme azul-escuro e osso claro. */
+:root[data-mode="dark"] {
+  color-scheme: dark;
+  --color-paper: #0e1418;
+  --color-surface: #151d23;
+  --color-ink: #e6ebe9;
+  --color-muted: #98a5ae;
+  --color-line: #27333b;
+  --color-titanium: #6d7a84;
+  --color-accent: #7db7d3;
+  --color-accent-soft: #16303d;
+  --color-on-accent: #071318;
+  --color-ok: #6fcf9d;
+  --color-ok-bg: #12291f;
+  --color-warn: #f2c35a;
+  --color-warn-bg: #2b220d;
+  --color-bad: #ff8f84;
+  --color-bad-bg: #331614;
+  --color-na: #b6c0c8;
+  --color-na-bg: #1f2930;
+}
+
+/* Alto contraste: preto, branco e amarelo. */
+:root[data-mode="contrast"] {
+  color-scheme: dark;
+  --color-paper: #000000;
+  --color-surface: #000000;
+  --color-ink: #ffffff;
+  --color-muted: #e6e6e6;
+  --color-line: #ffffff;
+  --color-titanium: #ffffff;
+  --color-accent: #ffd60a;
+  --color-accent-soft: #262000;
+  --color-on-accent: #000000;
+  --color-ok: #7dffb2;
+  --color-ok-bg: #000000;
+  --color-warn: #ffd60a;
+  --color-warn-bg: #000000;
+  --color-bad: #ff8a80;
+  --color-bad-bg: #000000;
+  --color-na: #ffffff;
+  --color-na-bg: #000000;
+}
+:root[data-mode="contrast"] :focus-visible { outline: 3px solid #ffd60a; outline-offset: 2px; }
+
+html { -webkit-tap-highlight-color: transparent; }
+body { font-feature-settings: "tnum" 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+@keyframes settle {
+  from { transform: translateY(6px); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+.settle { animation: settle 260ms cubic-bezier(.2,.7,.3,1); }
